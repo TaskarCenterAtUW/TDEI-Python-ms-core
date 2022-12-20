@@ -29,7 +29,12 @@ load_dotenv()
 #     print("\t"+item.content_settings.content_type)
 
 azureclient = Core.get_storage_client()
-container = azureclient.getContainer('gtfspathways')
+container = azureclient.getContainer('tdei-storage-test')
 listOfFiles = container.listFiles()
 for single in listOfFiles:
     print(single.name)
+
+firstFile = listOfFiles[2]
+# print(firstFile.name+'<><>')
+fileContent = firstFile.getBodyText()
+print(fileContent)

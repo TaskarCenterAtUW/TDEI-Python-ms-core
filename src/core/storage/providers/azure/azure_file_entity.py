@@ -7,9 +7,9 @@ class AzureFileEntity(file_entity.FileEntity):
         super().__init__(name, mimetype)
         self.blobClient = blobClient
     def getStream(self):
-        return self.blobClient.download_blob(self.name).readall()
+        return self.blobClient.download_blob().readall()
     def getBodyText(self):
-        return self.blobClient.download_blob(self.name).content_as_text()
+        return self.blobClient.download_blob().content_as_text()
     def upload(self, uploadStream):
         self.blobClient.upload_blob(self.filePath,uploadStream)
     
