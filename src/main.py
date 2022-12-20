@@ -3,9 +3,10 @@ import os
 from dotenv import load_dotenv
 
 from models.abstracts.iconfig import IConfig
-from core.logger.logger import Logger
+# from core.logger.logger import Logger
 from core.queue import topic
 from models.config import CoreConfig
+from core.storage.providers.azure import azure_storage_client
 
 load_dotenv()
 
@@ -28,6 +29,10 @@ class Core:
         queue_config = CoreConfig.default()
         print(queue_config.provider)
         return topic.Topic(queue_config, topic_name)
+
+    @staticmethod
+    def get_storage_client():
+        return azure_storage_client.AzureStorageClient(azure_storage_client.azure_storage_config.AzureStorageConfig())
 
     def __check_health(self):
         print('\x1b[32m ------------------------- \x1b[0m')

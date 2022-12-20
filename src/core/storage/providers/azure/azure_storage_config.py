@@ -8,3 +8,6 @@ class AzureStorageConfig:
         config = CoreConfig.default()
         self.provider = config.provider
         self.connection_string = os.environ.get('STORAGECONNECTION', '')
+    @staticmethod
+    def default():
+        return AzureStorageConfig()
